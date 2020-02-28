@@ -52,10 +52,12 @@
                 <form v-cloak class="m-3">
                     <div class="form-row">
                         <div class="col">
-                            <input id="first" class="firstin" type="text" v-model="firstName" placeholder="First Name">
+                            <input id="first" class="firstin form-control" type="text" v-model="firstName"
+                                placeholder="First Name">
                         </div>
                         <div class="col">
-                            <input id="last" class="lastin" type="text" v-model="lastName" placeholder="Last Name">
+                            <input id="last" class="lastin form-control" type="text" v-model="lastName"
+                                placeholder="Last Name">
                         </div>
                         <div class="col">
                             <button class="btn" type="button" @click="addToQueue(firstName, lastName)"
