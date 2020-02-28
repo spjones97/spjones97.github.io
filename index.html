@@ -184,6 +184,7 @@
                 this.timeIn[this.timeIn.length] = today.toLocaleTimeString();
                 this.onQueue.splice();
                 this.timeIn.splice();
+                // Clear the first name and last name fields after submit button is clicked
                 this.firstName = "";
                 this.lastName = "";
             },
@@ -197,6 +198,8 @@
                 this.onQueue.splice(index, 1);
                 this.timeIn.splice(index, 1);
                 this.onCutter.splice();
+                // Clear time input box
+                this.time = '';
             },
             removeCutter: function (index) {
                 this.timeOn.splice(index, 1);
