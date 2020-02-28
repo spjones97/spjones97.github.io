@@ -51,10 +51,10 @@
                 <form v-cloak class="m-3">
                     <div class="form-row">
                         <div class="col">
-                            <input class="firstin" type="text" v-model="firstName" placeholder="First Name">
+                            <input id="first" class="firstin" type="text" v-model="firstName" placeholder="First Name">
                         </div>
                         <div class="col">
-                            <input class="lastin" type="text" v-model="lastName" placeholder="Last Name">
+                            <input id="last" class="lastin" type="text" v-model="lastName" placeholder="Last Name">
                         </div>
                         <div class="col">
                             <button class="btn" type="button" @click="addToQueue(firstName, lastName)"
@@ -184,6 +184,8 @@
                 this.timeIn[this.timeIn.length] = today.toLocaleTimeString();
                 this.onQueue.splice();
                 this.timeIn.splice();
+                this.firstName = "";
+                this.lastName = "";
             },
             addToCutter: function (index, time) {
                 this.onCutter[this.onCutter.length] = this.onQueue[index];
