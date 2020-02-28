@@ -195,8 +195,9 @@
                 var checkOne = document.getElementById("checkOne");
                 var checkTwo = document.getElementById("checkTwo");
                 var checkThree = document.getElementById("checkThree");
-                // Will only add person to cutter if they have been checked off
-                if (checkOne.checked == true && checkTwo.checked == true && checkThree.checked == true) {
+                // Add person to cutter if received ALL checks AND there are less than 2 people on the cutter
+                if (checkOne.checked == true && checkTwo.checked == true && checkThree.checked == true &&
+                    this.onCutter.length < 2) {
                     this.onCutter[this.onCutter.length] = this.onQueue[index];
                     var now = new Date();
                     this.timeOn[this.timeOn.length] = now.toLocaleTimeString();
