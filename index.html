@@ -190,17 +190,23 @@
                 this.lastName = "";
             },
             addToCutter: function (index, time) {
-                this.onCutter[this.onCutter.length] = this.onQueue[index];
-                var now = new Date();
-                this.timeOn[this.timeOn.length] = now.toLocaleTimeString();
-                now.setMinutes(now.getMinutes() + parseInt(time));
-                // HH:MM AM/PM Format
-                this.times[this.times.length] = now.toLocaleTimeString();
-                this.onQueue.splice(index, 1);
-                this.timeIn.splice(index, 1);
-                this.onCutter.splice();
-                // Clear time input box
-                this.time = '';
+                var checkOne = document.getElementById("checkOne");
+                var checkTwo = document.getElementById("checkTwo");
+                var checkThree = document.getElementById("checkThree");
+                // Will only add person to cutter if they have been checked off
+                if (checkOne.checked == true && checkTwo.checked == true && checkThree.checked == true) {
+                    this.onCutter[this.onCutter.length] = this.onQueue[index];
+                    var now = new Date();
+                    this.timeOn[this.timeOn.length] = now.toLocaleTimeString();
+                    now.setMinutes(now.getMinutes() + parseInt(time));
+                    // HH:MM AM/PM Format
+                    this.times[this.times.length] = now.toLocaleTimeString();
+                    this.onQueue.splice(index, 1);
+                    this.timeIn.splice(index, 1);
+                    this.onCutter.splice();
+                    // Clear time input box
+                    this.time = '';
+                }
             },
             removeCutter: function (index) {
                 this.timeOn.splice(index, 1);
