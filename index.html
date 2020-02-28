@@ -1,1 +1,109 @@
-Hello World
+<!DOCTYPE html>
+
+<!-- import bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link rel="stylesheet" href="queue.css">
+
+<!-- import CSS -->
+<link rel="stylesheet" href="queue.css">
+
+<!-- Tab Information -->
+<link rel="icon" href="../beamfavicon.ico">
+<title>Laser Cutter Queue</title>
+
+<div id="app">
+    <div class="container">
+        <div class="card">
+
+            <!-- Main Card header -->
+            <h1 class="card-header main-header" style="text-align: center;">LASER CUTTER QUEUE</h1>
+
+            <!-- On-Cutter Table -->
+            <table v-cloak v-if="onCutter.length > 0" class="table">
+                <h3 v-cloak v-if="onCutter.length > 0" class="cutter-header" style="text-align: center;">On
+                    Cutter</h3>
+                <thead class="thead-light">
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Start Time</th>
+                    <th>Expected End Time</th>
+                    <th>Remove</th>
+                </thead>
+                <tbody class="cutter-body">
+                    <tr v-cloak v-for="(p, index) in onCutter" :key="index">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ getCutterName(index) }}</td>
+                        <td>{{ getTimeOn(index) }}</td>
+                        <td id="timer">{{ getTime(index) }}</td>
+                        <td>
+                            <button type="button" @click="removeCutter(index)" class="btn btn-warning">REMOVE</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Sign-Up Form Header -->
+            <h2 class="sign-header" style="text-align: center;">Sign In</h2>
+
+            <!-- Sign-Up Form -->
+            <div class="signcontainer">
+                <form v-cloak class="m-3">
+                    <div class="form-row">
+                        <div class="col">
+                            <input class="firstin" type="text" v-model="firstName" placeholder="First Name">
+                        </div>
+                        <div class="col">
+                            <input class="lastin" type="text" v-model="lastName" placeholder="Last Name">
+                        </div>
+                        <div class="col">
+                            <button class="btn" type="button" @click="addToQueue(firstName, lastName)"
+                                id="queuebtn">ADD</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- On-Queue Table -->
+            <table class="table">
+                <h3 class="queue-header" style="text-align: center;">On Queue
+                </h3>
+                <thead class="thead-light">
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Time-In</th>
+                    <th>Checks</th>
+                    <th>Time</th>
+                    <th>Add to Cutter</th>
+                </thead>
+                <tbody class="queue-body">
+                    <tr v-cloak v-for="(p, index) in onQueue" :key="index">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ getQueueName(index) }}</td>
+                        <td>{{ getTimeIn(index) }} </td>
+                        <td>
+                            <input type="checkbox" id="checkOne">
+                            <label for="checkOne">#1</label>
+                            <input type="checkbox" id="checkTwo">
+                            <label for="checkTwo">#2</label>
+                            <input type="checkbox" id="checkThree">
+                            <label for="checkThree">#3</label>
+                        </td>
+                        <td>
+                            <input type="number" max="90" id="minInput" type="text" v-model="time" placeholder="min">
+                        </td>
+                        <td>
+                            <button type="button" @click="addToCutter(index, time)" class="btn">ADD</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- import vue.js scripts -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+<!-- import vue.js script -->
+<script src="./cutter-script-v2.js"></script>
